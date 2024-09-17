@@ -270,6 +270,8 @@ function start(dataModel, serialNumber, macAddress, acsUrl) {
 
   if (device["InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1.MACAddress"])
     device["InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1.MACAddress"][1] = macAddress;
+  if (device["Device.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1.MACAddress"])
+    device["Device.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1.MACAddress"][1] = macAddress;
 
   let username = "";
   let password = "";
