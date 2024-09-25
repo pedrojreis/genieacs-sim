@@ -53,7 +53,7 @@ const program = require("commander")
   .option("-p, --processes [count]", "Number of devices to simulate (default: 1)", parseFloat, 1)
   .option("-w, --wait [milliseconds]", "Waiting period between process spawning (default: 1000)", parseFloat, 1000)
   .option("-s, --serial [offset]", "Serial number offset (default: 0)", parseFloat, 0)
-  .option("-a, --mac-address [address]", "MAC address (default: 20:2B:C1:E0:06:65)", "20:2B:C1:E0:06:65")
+  .option("-a, --mac-address [address]", "MAC address (default: 20:2B:C1:E0:06:00)", "20:2B:C1:E0:06:00")
   .parse(process.argv);
 
 if (!/^(http|https):\/\//.test(program.acsUrl)) {
@@ -78,7 +78,7 @@ for (let i = 0; i < program.processes; ++i) {
   setTimeout(function () {
     let env = {
       "SERIAL_NUMBER": `00000${program.serial + i}`.slice(-6),
-      "MAC_ADDRESS": program.macAddress,
+      "MAC_ADDRESS": program.macAddress.slice(0, -2) + i.toString().padStart(2, '0'),
       "ACS_URL": program.acsUrl,
       "DATA_MODEL": program.dataModel,
     };
